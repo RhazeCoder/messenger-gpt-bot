@@ -1,7 +1,6 @@
-
 import { readFileSync } from 'fs';
 import login from 'fca-unofficial';
-import { gpt } from './modules/gpt.js';
+import { hercai } from './modules/hercai.js';
 
 login({ appState: JSON.parse(readFileSync('appstate.json', 'utf8')) }, (err, api) => {
     if (err) return console.error(err);
@@ -12,7 +11,7 @@ login({ appState: JSON.parse(readFileSync('appstate.json', 'utf8')) }, (err, api
         if (err) return console.error(err);
         switch (event.type) {
             case 'message':
-                await gpt(event, api);
+                await hercai(event, api);
                 break;
             default:
                 break;
