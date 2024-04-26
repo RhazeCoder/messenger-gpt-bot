@@ -9,6 +9,7 @@ const randomIP = () => {
 }
 
 const chat_completion = async (message) => {
+    console.log(`Query: ${message}`)
     const response = request.get({
         url: `https://hercai.onrender.com/v3/hercai?question=${message}`,
         headers: {
