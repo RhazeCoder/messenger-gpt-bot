@@ -20,7 +20,7 @@ login({ appState: JSON.parse(readFileSync('appstate.json', 'utf8')) }, (err, api
 
 });
 
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = 3000;
 
