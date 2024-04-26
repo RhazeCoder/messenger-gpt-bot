@@ -9,21 +9,16 @@ const randomIP = () => {
 }
 
 const chat_completion = async (message) => {
-    request.get({
+    const response = request.get({
         url: `https://hercai.onrender.com/v3/hercai?question=${message}`,
         headers: {
             'Content-Type': 'application/json',
             'X-forwarded-for': randomIP()
         }
-    })
-    .then((res) => {
-        const respo = JSON.parse(res);
-        return respo?.reply || 'No response';
-    })
-    .catch((err) => {
-        return err.message;
     });
-};
+    const reply = JSON.parse(await response)?.reply;
+    return reply ? reply.trim() : response?.error.message ?? '❎Failed to get response';
+}
 
 const hercai = async (event, api) => {
     if (!event?.body?.trim()) return;
